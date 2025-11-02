@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+ /* -----------*\
+ ## Reset CSS 
+ \*----------- */
+
+ a,
+ img,
+ span,
+ button{
+    @apply block;
+ }
+
+ html{
+    @apply scroll-smooth;
+ }
+
+  /* -----------*\
+ ## Reuseable Styles 
+ \*----------- */
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+ion-icon {
+  --ionicon-stroke-width: 50px;
+}
+
+@layer components {
+   .img-holder {
+      @apply overflow-hidden;
+      /* use explicit aspect-ratio only when variables are provided */
+      aspect-ratio: var(--width) / var(--height);
+      }
+
+      .img-cover {
+           @apply h-full w-full object-cover;
+           /* explicit fallbacks in case @apply doesn't expand in some setups */
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+           display: block; /* ensure image behaves as a block-level replaced element */
+      }
+}
+   /* -----------*\
+ ## Component Styles 
+ \*----------- */
+
+ /**
+    * Dropdown
+    */
+
+   .dropdown {
+      @apply relative;
+   }
+
+   /* Dropdown content - use max-height so we don't clip last items; allow scrolling when needed */
+   .dropdown_content {
+      @apply text-alabaster border-amber_alpha border-solid border-b max-h-0 px-5 space-y-1 text-sm transition-all duration-200 invisible md:bg-papaya_whip md:text-jet md:absolute md:top-10 md:-left-0 md:min-w-[125px] md:space-y-1 md:rounded-md md:shadow-sm xxl:text-lg xxl:min-w-40;
+      /* Use clip-path for a neat reveal and constrain overflow */
+      clip-path: inset(0 0 100% 0);
+      overflow: hidden;
+   }
+
+   .dropdown.active .dropdown_content {
+      @apply visible xxl:h-60;
+      /* large max-height so all items are visible; if content exceeds this, allow scrolling */
+      max-height: 600px;
+      clip-path: inset(0 0 0 0);
+      overflow-y: auto;
+   }
+
+   /* JS will toggle an .open class on the toggler; keep a CSS fallback for older browsers */
+   .navbar-link.open ion-icon {
+      transform: rotate(90deg);
+   }
+
+   .dropdown_content a {
+      @apply block py-2 transition-colors duration-200 hover:text-butterscotch;
+   }
+
+    /* -----------*\
+ ## button
+ \*----------- */
+   .btn{
+      @apply bg-butterscotch text-white font-bold uppercase tracking-widest text-sm
+      max-w-max
+      rounded-md
+      duration-200
+       hover:shadow-lg;
+   }
+  /* -----------*\
+ ## Header Styles 
+ \*----------- */
+ .header {
+    @apply bg-caf_noir
+    fixed
+    left-0
+    top-0
+    z-30
+    h-20
+    w-full
+    duration-200
+    ease-inExpo
+    /* responsive for lg:1200px screen*/
+    lg:bg-transparent;
+ }
+
+ .header.active {
+    @apply
+    shadow-shadowDark
+    animate-fadeInDown
+     /* responsive for lg:1200px screen*/
+     lg:bg-caf_noir;
+ }
+ .header.container {
+      /* responsive for lg:1200px screen*/
+      @apply lg:mx-0 lg:w-2/4 lg:py-7 lg:px-7;
+
+      /* NOTE: arbitrary responsive utilities (e.g. lg:max-[calc(...)]) are not allowed inside @apply.
+          Use explicit media queries below to set those properties instead. */
+ }
+
+/* Responsive rules that can't be expressed via @apply with arbitrary values */
+@media (min-width: 1200px) {
+   .header.container {
+      max-width: calc(100% - 600px);
+   }
+}
+
+@media (min-width: 1400px) {
+   .header.container {
+      width: 100%;
+      max-width: calc(100% - 666px);
+   }
+}
+
+@media (min-width: 1600px) {
+   .header.container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1650px;
+   }
+}
+
+ .navbar {
+    @apply bg-licorice
+    fixed 
+    right-0
+    top-0
+    z-50
+    h-screen
+    w-80
+    translate-x-80
+    pt-20
+    duration-200
+    ease-inExpo
+    invisible;
+
+ }
+
+ @media(min-width:1024px) {
+    .navbar {
+        all: unset;
+    }
+ }
+
+ .navbar.active {
+    @apply 
+    visible
+    translate-x-0;
+ }
+
+ .nav-close-btn {
+    @apply text-alabaster
+    absolute
+    right-3
+    top-5
+    grid
+    place-items-center
+    text-[28px]
+    h-10
+    w-10
+    /* responsive for lg:1000px screen*/
+    md:hidden;
+ }
+
+
+ .navbar-link {
+    @apply text-alabaster border-amber_alpha border-solid border-b px-3 py-5 font-bold uppercase cursor-pointer transition-colors hover:text-butterscotch md:border-b-0 md:p-0 xxl:text-xl;
+ }
+
+
+ /** * Cart Toggler
+    */
+
+    .cart-toggler {
+      @apply relative
+      grid
+      h-10
+      w-10
+      place-items-center
+      rounded-full
+      
+      /* :: before */
+      before:text-papaya_whip
+      before:bg-red
+        before:content-['2']
+        before:absolute
+        before:top-0  
+        before:right-0
+        before:h-5
+        before:w-5
+        before:z-10
+        before:rounded-full
+        before:text-sm
+        before:font-semibold
+        
+        /* responsive for lg:1200px screen*/
+        lg:caret-caf_noir;
+    }
+
+    .cart-modal{
+        @apply fixed
+        top-24
+        right-2
+        max-w-72
+        rounded-lg
+        px-2
+        py-3
+        z-20
+        shadow-[0_-4px_0_#dd9d4cff]
+        origin-top
+        duration-75
+        ease-inExpo
+        invisible
+        opacity-0
+        
+   /* responsive for sm:635px screen*/
+   sm:right-14;
+   /* use standard CSS gradient instead of an invalid token */
+   background: linear-gradient(359deg,#fde6b9,#fff3dcff);
+    }
+
+    .cart-modal.active{
+        @apply translate-y-0.5
+        visible
+        opacity-100;
+    }
+
+    .cart-modal .material-symbols-rounded{
+        font-variation-settings: 'opsz' 20;
+    }
