@@ -96,7 +96,50 @@ ion-icon {
       duration-200
        hover:shadow-lg;
    }
+  
   /* -----------*\
+ ## button
+ \*----------- */
+  .btn{
+       @apply text-white
+       font-bold
+       uppercase
+       tracking-widest
+       text-sm
+       max-w-max
+       rounded-md
+       duration-200
+       
+         hover:shadow-lg;
+  }
+  .btn-text{
+         @apply bg-caf_noir
+         ring-butterscotch
+         ring-1
+        
+         hover:shadow-lg;
+  }
+  /** 
+   *Card
+   */
+
+   .card{
+          @apply bg-cover
+          bg-no-repeat
+          bg-center
+          rounded-md
+          min-h-[219px]
+          py-5
+          px-5
+          
+          
+          /* responsive for lg:1000px screen*/
+          md:min-h-[360px]
+          
+          /* responsive for xl:1200px screen*/
+          lg:min-h-[219px];
+   }
+   /* -----------*\
  ## Header Styles 
  \*----------- */
  .header {
@@ -260,3 +303,74 @@ ion-icon {
     .cart-modal .material-symbols-rounded{
         font-variation-settings: 'opsz' 20;
     }
+
+
+/* -----------*\
+## Overlay Styles 
+\*----------- */
+.overlay {
+   @apply fixed
+   left-0
+   top-0
+   z-40
+   w-full
+   h-screen
+   ease-inExpo
+   duration-75
+   invisible
+   opacity-0
+   bg-black/20;  /* semi-transparent black background improves blur visibility */
+}
+
+
+.overlay.active {
+   @apply visible
+   opacity-100
+   backdrop-blur-sm;
+}
+
+/* -----------*\
+## Hero 
+\*----------- */
+
+.hero{
+   @apply bg-caf_noir
+   relative
+   pt-20;
+}
+
+@media (min-width:1200px){
+   .hero::before{
+      all: unset;
+   }
+}
+
+.hero .container {
+  /* response for lg:1200px */
+  @apply lg:grid
+  lg:grid-cols-2;
+}
+
+.hero-banner{
+   @apply absolute
+   inset-0
+   
+   /* responsive for lg:1200px screen */
+   lg:left-auto
+   lg:max-w-[50%];
+}
+
+.brand-list::-webkit-scrollbar{
+   @apply hidden;
+}
+
+.brand-list-item{
+   @apply grid 
+   place-content-center
+   p-2
+   h-14
+   min-w-32
+   rounded-md
+   cursor-pointer;
+}
+
