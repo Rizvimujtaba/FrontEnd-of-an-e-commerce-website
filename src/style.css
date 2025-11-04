@@ -87,6 +87,94 @@ ion-icon {
    }
 
     /* -----------*\
+ ## Slider
+ \*----------- */
+.slider-container {
+   position: relative;
+   overflow: hidden;
+}
+
+.slider {
+   display: flex;
+   gap: 1.5rem;
+   padding-top: 2rem;
+   padding-bottom: 2rem;
+   scroll-snap-type: x mandatory;
+   -webkit-overflow-scrolling: touch;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+}
+
+.slider::-webkit-scrollbar {
+   display: none;  /* Chrome, Safari and Opera */
+}
+
+.slider-item {
+   flex-shrink: 0;
+   width: 16rem;
+   scroll-snap-align: start;
+   transition: transform 300ms ease-in-out;
+}
+
+/* Arrow buttons */
+.arrow-button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 2.5rem;
+   height: 2.5rem;
+   display: none; /* Initially hidden, JS will show when needed */
+   place-items: center;
+   background-color: rgba(255, 255, 255, 0.9);
+   border-radius: 9999px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   font-size: 1.5rem;
+   z-index: 10;
+   transition: opacity 200ms ease, transform 200ms ease;
+   cursor: pointer;
+   color: #333;
+   pointer-events: auto;
+}
+
+.arrow-button:disabled {
+   opacity: 0.3;
+   cursor: default;
+   pointer-events: none;
+}
+
+@media (hover: hover) {
+   .arrow-button {
+      opacity: 0;
+      visibility: hidden;
+   }
+
+   .slider-container:hover .arrow-button {
+      opacity: 1;
+      visibility: visible;
+   }
+}
+
+.arrow-button:hover {
+   background-color: white;
+   transform: translateY(-50%) scale(1.1);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-button:active {
+   transform: translateY(-50%) scale(0.95);
+}
+
+.arrow-button[data-prev-btn] {
+   left: 0.5rem;
+}
+
+.arrow-button[data-next-btn] {
+   right: 0.5rem;
+}
+
+/* -----------*\
  ## button
  \*----------- */
    .btn{
@@ -139,6 +227,9 @@ ion-icon {
           /* responsive for xl:1200px screen*/
           lg:min-h-[219px];
    }
+
+
+
    /* -----------*\
  ## Header Styles 
  \*----------- */

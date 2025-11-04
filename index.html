@@ -67,8 +67,9 @@
             </nav>
 
             <div class="rounded-md overflow-hidden flex items-center gap-3 lg:fixed lg:top-5 lg:right-5">
-            <button class="cart-toggler" aria-label="cart toggler"data-cart-toggler>
+            <button class="cart-toggler relative" aria-label="cart toggler" data-cart-toggler>
                 <span class="material-symbols-rounded text-papaya_whip" aria-hidden="true">shopping_cart_checkout</span>
+                <span data-cart-count class="absolute -top-2 -right-2 bg-butterscotch_light text-white rounded-full w-5 h-5 flex items-center justify-center text-xs" style="display: none">0</span>
                </button>
 
 
@@ -195,6 +196,257 @@
             </div>
           </div>
           <!-- #Product categories -->
+           <section class="py-10 md:py-16 lg:py-24 xl:py-20">
+            <div class="container mx-auto px-3 sm:px-7 xl:px-10">
+                <div class="grid gap-8 md:grid-cols-[0.8fr_1fr] md:items-start lg:grid-cols-[0.7fr_1fr] xl:grid-cols-[0.5fr_1fr]">
+                    <div class="max-w-xl">
+                        <h1 class="text-caf_noir font-primary font-bold text-5xl sm:text-6xl text-center my-3 md:text-start lg:text-7xl">Our Products categories</h1>
+                        <p class="text-jet text-center text-lg md:text-start mt-4">Explore our curated popular collection product categories featuring high-quality</p>
+
+                        <div class="text-center md:text-start mt-8">
+                            <a href="#" class="btn bg-butterscotch_light inline-block py-3 px-10 hover:bg-opacity-90 transition-all duration-300" aria-label="shop">View Products</a>
+                        </div>
+                    </div>
+                    <div class="slider-container h-[450px] sm:max-w-[540px] sm:ms-auto md:max-w-full md:ms-0 overflow-hidden" data-slider-container>
+                    <ul class="slider flex gap-6 snap-x snap-mandatory py-8 transition-transform duration-300" data-slider>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="attire">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-1.jpg" width="265" height="320" loading="lazy" alt="Attire" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="attire"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Attire</p>
+                                    <span class="bg-butterscotch_light px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Artisanal designs that make every day a feast </p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="jewellry">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-2.jpg" width="265" height="320" loading="lazy" alt="Jewellry" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="jewellry"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Jewellry</p>
+                                    <span class="bg-butterscotch_light px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Casual but Sophisticated pieces for every room in the house</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="lamp">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-3.jpg" width="265" height="320" loading="lazy" alt="Lamp" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="lamp"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Lamp</p>
+                                    <span class="bg-butterscotch_light px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Makes the inside of room asethetic</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-4.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Purse</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor sit. </p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-5.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Bags</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-6.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">CupHolders</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-7.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">RoomCandles</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-8.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">FragranceCandles</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                            </div>
+                        </li>
+                        <li class="slider-item group pb-6 space-y-5 w-64 rounded-lg snap-start" data-product-id="product1">
+                            <div class="relative overflow-hidden">
+                                <figure class="img-holder rounded-lg h-80" style="--width : 265; --height: 320px ">
+                                    <img src="./assets/images/slide-10.jpg" width="265" height="320" loading="lazy" alt="sweater" class="img-cover duration-[0.5s] ease-linear group-hover:scale-105">
+                                </figure>
+                                <div class="bg-[#d89245c7] text-white px-3 py-2 absolute top-2/4 left-2/4 -translate-x-2/4 flex items-center opacity-0 duration-75 ease-linear group-hover:-translate-y-2/4 group-hover:opacity-100">
+                                    <button class="h-9 w-9 grid place-items-center" data-action="add-to-cart">
+                                        <ion-icon name="bag-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="toggle-wishlist">
+                                        <ion-icon name="heart-outline" aria-hidden="true" class="text-[22px]" data-wishlist="product1"></ion-icon> 
+                                    </button>
+                                    <button class="h-9 w-9 grid place-items-center" data-action="quick-view">
+                                        <ion-icon name="eye-outline" aria-hidden="true" class="text-[22px]"></ion-icon> 
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <p class="text-lg text-jet font-bold">Envelop</p>
+                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                </div>
+                                <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="">
+                        <button class="arrow-button" aria-label="slide prev" data-prev-btn>
+                            <ion-icon name="chevron-back-outline" aria-hidden="true" class="text-caf_noir font-bold"></ion-icon>
+                        </button>
+
+                         <button class="arrow-button" aria-label="slide prev" data-prev-btn>
+                            <ion-icon name="chevron-forward-outline" aria-hidden="true" class="text-caf_noir font-bold"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+           </section>
      </main>
   <!--ionicon link-->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
