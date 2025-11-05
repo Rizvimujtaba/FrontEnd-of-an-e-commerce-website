@@ -49,6 +49,30 @@ ion-icon {
            display: block; /* ensure image behaves as a block-level replaced element */
       }
 }
+
+   /* -----------*\
+ ## Reuseable Styles 
+ \*----------- */
+.grid-list {
+    display: grid;
+}
+
+.grid-list > li:not(.off-card) {
+    width: 100%;
+}
+
+.off-card {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 475px) {
+    .off-card {
+        grid-column: 1 / -1;
+    }
+}
+
+
    /* -----------*\
  ## Component Styles 
  \*----------- */
@@ -227,8 +251,16 @@ ion-icon {
           /* responsive for xl:1200px screen*/
           lg:min-h-[219px];
    }
-
-
+    
+   /* -----------*\
+ ## Avatar
+ \*----------- */
+.avatar{
+   @apply w-12
+   h-12
+   rounded-full
+   shrink-0 ;
+}
 
    /* -----------*\
  ## Header Styles 
@@ -465,3 +497,53 @@ ion-icon {
    cursor-pointer;
 }
 
+  /* -----------*\
+ ## Testimonials
+ \*----------- */
+
+ .testimonial-card:nth-child(1){
+   @apply left-[calc(-450px_+_-20px)]
+   /* responsive for sm:635px screen */
+   sm:left-[calc(-580px_+_-30px)]
+   /* responsive for md:1000px screen */
+   md:left-[calc(-756px_+_-30px)]
+   ;
+ }
+
+ .testimonial-card:nth-child(2){
+   @apply left-0;
+ }
+
+ .testimonial-card:nth-child(3){
+   @apply left-[calc(450px_+_20px)]
+   /* responsive for sm:635px screen */
+   sm:left-[calc(580px_+_30px)]
+   /* responsive for md:1000px screen */
+   md:left-[calc(756px_+_30px)]
+   ;
+ }
+
+ .testimonial-card:nth-child(3){
+   @apply left-[calc((450px_+_20px)_*_2)]
+   /* responsive for sm:635px screen */
+   sm:left-[calc((450px_+_20px)_*_2)]
+   /* responsive for md:1000px screen */
+   md:left-[calc((450px_+_20px)_*_2)]
+   ;
+ }
+
+
+   /* -----------*\
+ ## Footer
+ \*----------- */
+
+ .parallax{
+   @apply min-h-[300px]
+   bg-fixed
+   bg-center
+   bg-cover
+   bg-no-repeat
+    /* responsive for xl:1400px screen */
+    
+    xl:min-h-96;
+ }
