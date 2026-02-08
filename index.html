@@ -10,7 +10,7 @@
   <!-- favicon -->
   <link rel="shortcut icon" href="./assets/images/favicon-light.svg" type="image/svg+xml">
   <!-- #css style link -->
-  <link href="/dist/style.css" rel="stylesheet">
+<link href="./dist/style.css" rel="stylesheet">
   <!-- google fonts-->
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,61 +69,43 @@
             <div class="rounded-md overflow-hidden flex items-center gap-3 lg:fixed lg:top-5 lg:right-5">
             <button class="cart-toggler relative" aria-label="cart toggler" data-cart-toggler>
                 <span class="material-symbols-rounded text-papaya_whip" aria-hidden="true">shopping_cart_checkout</span>
-                <span data-cart-count class="absolute -top-2 -right-2 bg-butterscotch_light text-white rounded-full w-5 h-5 flex items-center justify-center text-xs" style="display: none">0</span>
+                <span data-cart-count
+                    class="absolute -top-2 -right-2 bg-butterscotch_light text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold hidden">0</span>
                </button>
 
 
-             <div class="relative">
-                <div class="cart-modal"data-cart-modal>
-                    <ul>
-                         <li class="flex gap-2 pr-2">
-                            <figure class="img-holder w-20 h-20 rounded-md flex-shrink-0" style="--width:80;--height: 80;">
-                                <img src="./assets/images/cart-1.jpg" width="80" height="80" loading="lazy" alt="Handmade coffee mug" class="img-cover">
-                            </figure>
-                            <div >
-                                <span class="text-caf_noir text-sm font-bold">Handmade coffee mug</span>
-                                <div class="flex items-center gap-1 text-[13px]">
-                                    <p>1*</p>
-                                    <p>$85.00</p>
-                                </div>
-                            </div>
-                             <button class="h-5 w-5 flex-shrink-0 mb-auto" aria-label="remove product">
-                                <span class="material-symbols-rounded" aria-hidden="true">close</span>
-                             </button>
-                         </li>
-                         <div class="h-[1px] w-full my-3 bg-butterscotch_light"></div>
-                       
-                         <li class="flex gap-2 pr-2">
-                            <figure class="img-holder w-20 h-20 rounded-md flex-shrink-0" style="--width:80;--height: 80;">
-                                <img src="./assets/images/cart-2.jpg" width="80" height="80" loading="lazy" alt="Vintage Antique & candle Holder">
-                            </figure>
-                            <div >
-                                <span class="text-caf_noir text-sm font-bold">Vintage Antique & candle Holder</span>
-                                <div class="flex items-center gap-1 text-[13px]">
-                                    <p>1*</p>
-                                    <p>$990.00</p>
-                                </div>
-                            </div>
-                             <button class="h-5 w-5 flex-shrink-0 mb-auto" aria-label="remove product">
-                                <span class="material-symbols-rounded" aria-hidden="true">close</span>
-                             </button>
-                         </li>
-                         <div class="h-[1px] w-full my-3 bg-butterscotch_light"></div>
-                         <div class="flex justify-center items-center gap-2">
-                             <a href="#" class="btn bg-butterscotch_light py-3 px-4" aria-label="checkout">checkout</a>
-                            <a href="#" class="btn btn-text py-3 px-4" aria-label="view cart">
-                              view cart  
-                            </a>
-                        </div>
+            <div class="relative">
+                <div class="cart-modal" data-cart-modal>
+                    <div class="cart-header">
+                        <h3 class="cart-title">Shopping Cart</h3>
+                        <button class="cart-close-btn" data-cart-toggler aria-label="close cart">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
+                    </div>
+                    <ul class="cart-items-list">
+                        <li class="empty-cart-message">
+                            <span class="material-symbols-rounded">shopping_cart_checkout</span>
+                            <p>Your cart is empty</p>
+                        </li>
                     </ul>
+                    <div class="cart-footer">
+                        <div class="cart-summary">
+                            <span>Subtotal:</span>
+                            <span data-cart-subtotal>$0.00</span>
+                        </div>
+                        <button class="cart-checkout-btn" onclick="checkoutCart()" aria-label="checkout">
+                            Proceed to Checkout
+                        </button>
+                        <button class="cart-continue-btn" data-cart-toggler aria-label="continue shopping">Continue Shopping</button>
+                        </div>
                 </div>
              </div>
 
-            <button class="h-10 w-10 grid place-items-center md:hidden" aria-label="toggle menu"data-nav-toggler>
+            <button class="h-10 w-10 grid place-items-center md:hidden" aria-label="toggle menu" data-nav-toggler>
                 <span class="material-symbols-rounded text-papaya_whip" aria-hidden="true">menu</span>
             </button>
             </div>
-            <div class="overlay" data-overlay data-nav-toggler=""></div>
+            <div class="overlay" data-overlay data-nav-toggler></div>
         </div>  
      </header>
 
@@ -135,13 +117,14 @@
                     <p class="text-white uppercase font-bold text-center md:text-lg lg:text-start">
                         Welcome to CozyNest - Your Destination for Handcrafted Fashion & Vintage Decor
                     </p>
-                    <h1 class="text-white fonnt-primary font-bold text-6xl text-center mt-3 sm:text-7xl md:text-8xl lg:text-start lg:text-[85px] xxl:text-8xl">
+                    <h1
+                        class="text-white font-primary font-bold text-6xl text-center mt-3 sm:text-7xl md:text-8xl lg:text-start lg:text-[85px] xxl:text-8xl">
                        Handmade Fashion & Vintage Pieces
                     </h1>
                     <a href="#" class="btn bg-butterscotch_light py-3 px-10 mt-5 mx-auto md:mt-10 lg:mx-0 xxl:text-xl" aria-label="shop">Shop</a>
                     <div class="mt-52">
                         <p class="text-white font-bold">Trusted by :</p>
-                        <ul class="brand-list flex items-centergap-5 overflow-x-auto snap-x snap-mandatory py-5 lg:mr-10 lg:px-3 lg:-ms-3">
+                        <ul class="brand-list flex items-center gap-5 overflow-x-auto snap-x snap-mandatory py-5 lg:mr-10 lg:px-3 lg:-ms-3">
                             <li class="brand-list-item">
                                 <img src="./assets/images/brand-1.svg" alt="" class="w-32">
                             </li>
@@ -303,7 +286,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">Purse</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor sit. </p>
                             </div>
@@ -328,7 +311,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">Bags</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor sit amet.</p>
                             </div>
@@ -353,7 +336,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">CupHolders</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
                             </div>
@@ -378,7 +361,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">RoomCandles</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
                             </div>
@@ -403,7 +386,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">FragranceCandles</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
                             </div>
@@ -428,7 +411,7 @@
                             <div class="card-content space-y-2">
                                 <div class="flex justify-between items-start">
                                     <p class="text-lg text-jet font-bold">Envelop</p>
-                                    <span class="bg-butterscotch ox-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
+                                    <span class="bg-butterscotch px-2 py-1 text-sm text-papaya_whip font-bold">$25.75</span>
                                 </div>
                                 <p class="product-detail">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
                             </div>

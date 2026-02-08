@@ -3,6 +3,14 @@
  */
 'use strict';
 
+// Product Database
+const productsDatabase = {
+    attire: { id: 'attire', title: 'Attire', price: 25.75, image: './assets/images/slide-1.jpg', description: 'Artisanal designs that make every day a feast' },
+    jewellry: { id: 'jewellry', title: 'Jewellry', price: 25.75, image: './assets/images/slide-2.jpg', description: 'Casual but Sophisticated pieces for every room in the house' },
+    lamp: { id: 'lamp', title: 'Lamp', price: 25.75, image: './assets/images/slide-3.jpg', description: 'Makes the inside of room aesthetic' },
+    product1: { id: 'product1', title: 'Purse', price: 25.75, image: './assets/images/slide-4.jpg', description: 'Stylish and functional purse' }
+};
+
 // Utility Functions
 const addEventOnElem = function(elements, eventType, callback) {
     for(let i = 0; i < elements.length; i++) {
@@ -72,44 +80,78 @@ function updateCart() {
 function renderCart() {
     if (!$cartModal) return;
     
-    const cartList = $cartModal.querySelector('ul');
+    const cartList = $cartModal.querySelector('.cart-items-list');
+    const cartFooter = $cartModal.querySelector('.cart-footer');
     if (!cartList) return;
 
     if (cart.length === 0) {
-        cartList.innerHTML = '<li class="text-center py-4">Your cart is empty</li>';
+        cartList.innerHTML = `
+            <li class="empty-cart-message">
+                <span class="material-symbols-rounded text-6xl mb-2">shopping_cart_checkout</span>
+                <p>Your cart is empty</p>
+            </li>
+        `;
+        if (cartFooter) {
+            const subtotalSpan = cartFooter.querySelector('[data-cart-subtotal]');
+            if (subtotalSpan) subtotalSpan.textContent = '$0.00';
+        }
         return;
     }
 
-    cartList.innerHTML = cart.map(item => `
-        <li class="flex gap-2 pr-2">
-            <figure class="img-holder w-20 h-20 rounded-md flex-shrink-0" style="--width:80;--height: 80;">
+    let html = '';
+    cart.forEach(item => {
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        html += `
+        <li>
+            <figure class="cart-item-image">
                 <img src="${item.image}" width="80" height="80" loading="lazy" alt="${item.title}" class="img-cover">
             </figure>
-            <div>
-                <span class="text-caf_noir text-sm font-bold">${item.title}</span>
-                <div class="flex items-center gap-1 text-[13px]">
-                    <p>${item.quantity}*</p>
-                    <p>$${(item.price * item.quantity).toFixed(2)}</p>
+            <div class="cart-item-content">
+                <span class="cart-item-title">${item.title}</span>
+                <div class="cart-item-controls">
+                    <div class="quantity-control">
+                        <button onclick="updateCartQuantity('${item.id}', -1)" aria-label="decrease quantity">−</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateCartQuantity('${item.id}', 1)" aria-label="increase quantity">+</button>
+                    </div>
+                    <span class="cart-item-price">$${itemTotal}</span>
                 </div>
             </div>
-            <button class="h-5 w-5 flex-shrink-0 mb-auto" onclick="removeFromCart('${item.id}')" aria-label="remove product">
-                <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            <button class="cart-remove-btn" onclick="removeFromCart('${item.id}')" aria-label="remove product">
+                <span class="material-symbols-rounded">close</span>
             </button>
         </li>
-        <div class="h-[1px] w-full my-3 bg-butterscotch_light"></div>
-    `).join('');
+        `;
+    });
+    cartList.innerHTML = html;
 
+    // Update cart footer
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    cartList.insertAdjacentHTML('beforeend', `
-        <div class="flex justify-between items-center mb-3">
-            <span class="font-bold">Total:</span>
-            <span>$${total.toFixed(2)}</span>
-        </div>
-        <div class="flex justify-center items-center gap-2">
-            <a href="#checkout" class="btn bg-butterscotch_light py-3 px-4" aria-label="checkout">Checkout</a>
-            <a href="#cart" class="btn btn-text py-3 px-4" aria-label="view cart">View Cart</a>
-        </div>
-    `);
+    if (cartFooter) {
+        const subtotalSpan = cartFooter.querySelector('[data-cart-subtotal]');
+        if (subtotalSpan) subtotalSpan.textContent = `$${total.toFixed(2)}`;
+    }
+}
+
+function updateCartQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            updateCart();
+        }
+    }
+}
+
+function checkoutCart() {
+    if (cart.length === 0) {
+        showNotification('Your cart is empty');
+        return;
+    }
+    showNotification('Proceeding to checkout...');
+// Implement checkout logic here
 }
 
 function updateCartCount() {
@@ -117,7 +159,11 @@ function updateCartCount() {
     const counter = document.querySelector('[data-cart-count]');
     if (counter) {
         counter.textContent = count;
-        counter.style.display = count ? 'flex' : 'none';
+        if (count > 0) {
+            counter.classList.remove('hidden');
+        } else {
+            counter.classList.add('hidden');
+        }
     }
 }
 
@@ -351,18 +397,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the slider first
     initSlider();
     
-    // Set up product actions
+    // Initialize cart UI
+    updateCart();
+
+    // Set up product actions for slider items
     document.querySelectorAll('.slider-item').forEach(item => {
         const productId = item.dataset.productId;
-        if (!productId) return; // Skip if no product ID
+        if (!productId || !productsDatabase[productId]) return;
 
-        const productDetails = {
-            id: productId,
-            title: item.querySelector('.text-lg.text-jet.font-bold')?.textContent || 'Product',
-            price: parseFloat(item.querySelector('.bg-butterscotch_light')?.textContent?.replace('$', '') || '0'),
-            image: item.querySelector('img')?.src || '',
-            description: item.querySelector('.product-detail')?.textContent || ''
-        };
+        const productDetails = productsDatabase[productId];
 
         // Set up action buttons
         const actionButtons = item.querySelectorAll('[data-action]');
@@ -396,9 +439,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initialize cart and wishlist UI
-    updateCart();
-    wishlist.forEach(updateWishlistUI);
+    // Set up new arrival products (without slider)
+    document.querySelectorAll('.grid-list .group').forEach(item => {
+        const productTitle = item.querySelector('.text-lg.text-jet.font-bold')?.textContent || '';
+        const priceText = item.querySelector('.bg-butterscotch')?.textContent || '$0';
+        const price = parseFloat(priceText.replace('$', ''));
+        const imageUrl = item.querySelector('.img-cover')?.src || '';
+
+        const productDetails = {
+            id: productTitle.toLowerCase().replace(/\s+/g, '-'),
+            title: productTitle,
+            price: price,
+            image: imageUrl,
+            description: productTitle + ' - Premium handcrafted item'
+        };
+
+        const actionButtons = item.querySelectorAll('[data-action="add-to-cart"], [data-action="toggle-wishlist"], [data-action="quick-view"]');
+
+        if (actionButtons.length === 0) {
+            // Fallback for products with regular links
+            const links = item.querySelectorAll('a');
+            if (links.length >= 3) {
+                links[0].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addToCart(productDetails);
+                });
+                links[2].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showQuickView(productDetails);
+                });
+            }
+        }
+    });
+
+    // Close cart when clicking outside
+    document.addEventListener('click', (e) => {
+        if ($cartModal && $cartModal.classList.contains('active')) {
+            if (!e.target.closest('[data-cart-toggler]') && !e.target.closest('[data-cart-modal]')) {
+                $cartModal.classList.remove('active');
+            }
+        }
+    });
+
+    // Close navbar when clicking outside
+    document.addEventListener('click', (e) => {
+        if ($navbar && $navbar.classList.contains('active')) {
+            if (!e.target.closest('[data-navbar]') && !e.target.closest('[data-nav-toggler]')) {
+                $navbar.classList.remove('active');
+                $overlay.classList.remove('active');
+                document.body.classList.remove('active');
+            }
+        }
+    });
 });
 
 

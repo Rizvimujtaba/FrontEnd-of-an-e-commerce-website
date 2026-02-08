@@ -1368,11 +1368,13 @@ video {
 
 a,
  img,
- span,
  button {
   display: block;
 }
 
+span {
+  display: inline-block;
+}
 html {
   scroll-behavior: smooth;
 }

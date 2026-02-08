@@ -9,11 +9,13 @@
 
  a,
  img,
- span,
  button{
     @apply block;
  }
 
+ span {
+    @apply inline-block;
+ }
  html{
     @apply scroll-smooth;
  }
@@ -27,7 +29,10 @@
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
-  'opsz' 24
+'opsz' 24;
+   display: inline-block !important;
+   width: auto !important;
+   height: auto !important;
 }
 ion-icon {
   --ionicon-stroke-width: 50px;
@@ -376,51 +381,17 @@ ion-icon {
       w-10
       place-items-center
       rounded-full
-      
-      /* :: before */
-      before:text-papaya_whip
-      before:bg-red
-        before:content-['2']
-        before:absolute
-        before:top-0  
-        before:right-0
-        before:h-5
-        before:w-5
-        before:z-10
-        before:rounded-full
-        before:text-sm
-        before:font-semibold
-        
-        /* responsive for lg:1200px screen*/
-        lg:caret-caf_noir;
+      cursor-pointer transition-colors hover: bg-opacity-80;
     }
 
     .cart-modal{
-        @apply fixed
-        top-24
-        right-2
-        max-w-72
+      @apply hidden absolute top-full right-0 mt-2 w-96
         rounded-lg
-        px-2
-        py-3
-        z-20
-        shadow-[0_-4px_0_#dd9d4cff]
-        origin-top
-        duration-75
-        ease-inExpo
-        invisible
-        opacity-0
-        
-   /* responsive for sm:635px screen*/
-   sm:right-14;
-   /* use standard CSS gradient instead of an invalid token */
-   background: linear-gradient(359deg,#fde6b9,#fff3dcff);
+      bg-white shadow-lg z-50 max-h-96 overflow-y-auto;
     }
 
     .cart-modal.active{
-        @apply translate-y-0.5
-        visible
-        opacity-100;
+      @apply block;
     }
 
     .cart-modal .material-symbols-rounded{
@@ -547,3 +518,117 @@ ion-icon {
     
     xl:min-h-96;
  }
+/* -----------*\
+ ## Cart Modal - Redesigned
+ \*----------- */
+.cart-modal {
+   @apply hidden absolute top-full right-0 mt-3 bg-white rounded-xl shadow-2xl z-50 w-screen md:w-96 max-h-96 overflow-hidden flex flex-col border border-gray-200;
+}
+
+.cart-modal.active {
+   @apply block;
+}
+
+.cart-header {
+   @apply flex justify-between items-center px-5 py-4 border-b border-gray-200 bg-butterscotch sticky top-0 z-10;
+}
+
+.cart-title {
+   @apply text-lg font-bold text-white;
+}
+
+.cart-close-btn {
+   @apply text-white hover:text-gray-200 rounded-full h-8 w-8 grid place-items-center transition-colors duration-200;
+}
+
+.cart-items-list {
+   @apply flex-1 overflow-y-auto px-3 py-3 space-y-2;
+}
+
+.empty-cart-message {
+   @apply h-full flex flex-col items-center justify-center text-center py-10;
+}
+
+.empty-cart-message .material-symbols-rounded {
+   @apply text-5xl text-gray-300 mb-2;
+}
+
+.empty-cart-message p {
+   @apply text-sm text-gray-500;
+}
+
+.cart-items-list li:not(.empty-cart-message) {
+   @apply flex gap-3 pb-3 border-b border-gray-100 px-2 py-2;
+}
+
+.cart-items-list li:last-of-type {
+   @apply border-b-0;
+}
+
+.cart-item-image {
+   @apply w-16 h-16 rounded-lg overflow-hidden flex-shrink-0;
+}
+
+.cart-item-image img {
+   @apply w-full h-full object-cover;
+}
+
+.cart-item-content {
+   @apply flex-1 flex flex-col justify-between;
+}
+
+.cart-item-title {
+   @apply text-sm font-bold text-jet;
+}
+
+.cart-item-controls {
+   @apply flex items-center gap-2 text-xs;
+}
+
+.quantity-control {
+   @apply flex items-center gap-1 bg-gray-100 rounded px-2 py-1;
+}
+
+.quantity-control button {
+   @apply text-butterscotch font-bold w-5 h-5 flex items-center justify-center hover:text-butterscotch_light;
+}
+
+.quantity-control span {
+   @apply text-jet font-semibold w-6 text-center;
+}
+
+.cart-item-price {
+   @apply font-bold text-butterscotch ml-auto;
+}
+
+.cart-remove-btn {
+   @apply h-5 w-5 text-gray-400 hover:text-red-500 flex items-center justify-center transition-colors;
+}
+
+.cart-remove-btn .material-symbols-rounded {
+   @apply text-sm;
+}
+
+.cart-footer {
+   @apply border-t border-gray-200 px-4 py-4 bg-gray-50 space-y-3 sticky bottom-0;
+}
+
+.cart-summary {
+   @apply flex justify-between items-center px-3 py-2 bg-white rounded border border-gray-100 text-sm;
+}
+
+.cart-summary span:last-child {
+   @apply font-bold text-butterscotch;
+}
+
+.cart-checkout-btn {
+   @apply w-full bg-butterscotch text-white font-bold py-2.5 rounded-lg transition-all duration-200 hover:bg-butterscotch_light flex items-center justify-center gap-2 text-sm uppercase;
+}
+
+.cart-checkout-btn .material-symbols-rounded {
+   @apply text-lg;
+}
+
+.cart-continue-btn {
+   @apply w-full bg-gray-200 text-jet font-semibold py-2 rounded-lg transition-colors duration-200 hover:bg-gray-300 text-sm uppercase;
+}
